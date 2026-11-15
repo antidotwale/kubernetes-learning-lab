@@ -1,0 +1,16 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfplan
+tfplan
+crash.log
+# Secrets and local files
+.env
+*.pem
+*.key
+.DS_Store
+# Python
+__pycache__/
+.venv/
