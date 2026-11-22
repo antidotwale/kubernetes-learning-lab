@@ -1,0 +1,24 @@
+# kind cluster lab, node and system pod state
+NAME                STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                       KERNEL-VERSION            CONTAINER-RUNTIME
+lab-control-plane   Ready    control-plane   19m   v1.37.0   172.19.0.4    <none>        Debian GNU/Linux 13 (trixie)   7.0.14-linuxkit (arm64)   containerd://2.3.4
+lab-worker          Ready    <none>          18m   v1.37.0   172.19.0.2    <none>        Debian GNU/Linux 13 (trixie)   7.0.14-linuxkit (arm64)   containerd://2.3.4
+lab-worker2         Ready    <none>          18m   v1.37.0   172.19.0.3    <none>        Debian GNU/Linux 13 (trixie)   7.0.14-linuxkit (arm64)   containerd://2.3.4
+
+NAMESPACE            NAME                                        READY   STATUS    RESTARTS   AGE
+kube-system          coredns-559f6c778d-2744z                    1/1     Running   0          19m
+kube-system          coredns-559f6c778d-h59kb                    1/1     Running   0          19m
+kube-system          etcd-lab-control-plane                      1/1     Running   0          19m
+kube-system          kindnet-j4kq7                               1/1     Running   0          18m
+kube-system          kindnet-slpks                               1/1     Running   0          18m
+kube-system          kindnet-tjgvl                               1/1     Running   0          19m
+kube-system          kube-apiserver-lab-control-plane            1/1     Running   0          19m
+kube-system          kube-controller-manager-lab-control-plane   1/1     Running   0          19m
+kube-system          kube-proxy-qghpx                            1/1     Running   0          18m
+kube-system          kube-proxy-rlwnl                            1/1     Running   0          19m
+kube-system          kube-proxy-zrszd                            1/1     Running   0          18m
+kube-system          kube-scheduler-lab-control-plane            1/1     Running   0          19m
+local-path-storage   local-path-provisioner-75f7fc7dc5-v94gn     1/1     Running   0          19m
+
+Client Version: v1.37.1
+Kustomize Version: v5.8.1
+Server Version: v1.37.0
