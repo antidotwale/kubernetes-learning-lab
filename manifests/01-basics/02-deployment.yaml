@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: kubelab
-          image: kubelab:v1
+          image: kubelab:v2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

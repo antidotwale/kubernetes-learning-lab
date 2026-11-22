@@ -1,0 +1,55 @@
+--- strategy
+{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"}
+--- replicasets before
+NAME                 DESIRED   CURRENT   READY   AGE
+kubelab-78d7bd7bbd   3         3         3       4h27m
+deployment.apps/kubelab configured
+deployment.apps/kubelab annotated
+--- sample 1
+NAME                       READY   STATUS              RESTARTS   AGE
+kubelab-774889584f-clkwk   0/1     ContainerCreating   0          1s
+kubelab-78d7bd7bbd-gmk6h   1/1     Running             0          4h27m
+kubelab-78d7bd7bbd-gt2fb   1/1     Running             0          4h27m
+kubelab-78d7bd7bbd-nngm8   1/1     Running             0          88s
+--- sample 2
+NAME                       READY   STATUS              RESTARTS   AGE
+kubelab-774889584f-clkwk   1/1     Running             0          2s
+kubelab-774889584f-lm794   0/1     ContainerCreating   0          0s
+kubelab-774889584f-q4nxm   1/1     Running             0          1s
+kubelab-78d7bd7bbd-gmk6h   1/1     Terminating         0          4h27m
+kubelab-78d7bd7bbd-gt2fb   1/1     Running             0          4h27m
+kubelab-78d7bd7bbd-nngm8   0/1     Completed           0          89s
+--- sample 3
+NAME                       READY   STATUS      RESTARTS   AGE
+kubelab-774889584f-clkwk   1/1     Running     0          3s
+kubelab-774889584f-lm794   1/1     Running     0          1s
+kubelab-774889584f-q4nxm   1/1     Running     0          2s
+kubelab-78d7bd7bbd-gt2fb   0/1     Completed   0          4h27m
+--- sample 4
+NAME                       READY   STATUS    RESTARTS   AGE
+kubelab-774889584f-clkwk   1/1     Running   0          4s
+kubelab-774889584f-lm794   1/1     Running   0          2s
+kubelab-774889584f-q4nxm   1/1     Running   0          3s
+--- sample 5
+NAME                       READY   STATUS    RESTARTS   AGE
+kubelab-774889584f-clkwk   1/1     Running   0          5s
+kubelab-774889584f-lm794   1/1     Running   0          3s
+kubelab-774889584f-q4nxm   1/1     Running   0          4s
+deployment "kubelab" successfully rolled out
+--- replicasets after
+NAME                 DESIRED   CURRENT   READY   AGE
+kubelab-774889584f   3         3         3       6s
+kubelab-78d7bd7bbd   0         0         0       4h27m
+--- history
+deployment.apps/kubelab 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         update image to kubelab v2
+
+--- six calls
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-clkwk"}
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-lm794"}
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-clkwk"}
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-q4nxm"}
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-lm794"}
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-clkwk"}
