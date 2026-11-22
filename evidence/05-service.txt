@@ -1,0 +1,46 @@
+service/kubelab created
+--- service
+NAME      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+kubelab   ClusterIP   10.96.165.251   <none>        80/TCP    0s
+--- pod IPs
+NAME                       IP
+kubelab-78d7bd7bbd-9x4k7   10.244.2.4
+kubelab-78d7bd7bbd-gmk6h   10.244.1.3
+kubelab-78d7bd7bbd-gt2fb   10.244.1.4
+--- addresses behind the service
+10.244.2.4
+10.244.1.4
+10.244.1.3
+--- DNS name from inside a pod
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+** server can't find kubelab.cluster.local: NXDOMAIN
+
+Name:	kubelab.lab.svc.cluster.local
+Address: 10.96.165.251
+
+** server can't find kubelab.cluster.local: NXDOMAIN
+
+** server can't find kubelab.svc.cluster.local: NXDOMAIN
+
+** server can't find kubelab.svc.cluster.local: NXDOMAIN
+
+command terminated with exit code 1
+--- six calls to the service name
+{"app": "kubelab", "version": "v1", "message": "hello from kubelab", "pod": "kubelab-78d7bd7bbd-9x4k7"}
+{"app": "kubelab", "version": "v1", "message": "hello from kubelab", "pod": "kubelab-78d7bd7bbd-gt2fb"}
+{"app": "kubelab", "version": "v1", "message": "hello from kubelab", "pod": "kubelab-78d7bd7bbd-9x4k7"}
+{"app": "kubelab", "version": "v1", "message": "hello from kubelab", "pod": "kubelab-78d7bd7bbd-gmk6h"}
+{"app": "kubelab", "version": "v1", "message": "hello from kubelab", "pod": "kubelab-78d7bd7bbd-9x4k7"}
+{"app": "kubelab", "version": "v1", "message": "hello from kubelab", "pod": "kubelab-78d7bd7bbd-gt2fb"}
+--- kill kubelab-78d7bd7bbd-9x4k7, then compare pod IPs with the service addresses
+pod "kubelab-78d7bd7bbd-9x4k7" deleted from lab namespace
+NAME                       IP
+kubelab-78d7bd7bbd-gmk6h   10.244.1.3
+kubelab-78d7bd7bbd-gt2fb   10.244.1.4
+kubelab-78d7bd7bbd-nngm8   10.244.2.6
+10.244.1.4
+10.244.1.3
+10.244.2.6
