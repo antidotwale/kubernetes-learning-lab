@@ -1,0 +1,8 @@
+image user=10001 size=84772391
+--- GET /
+{"app": "kubelab", "version": "v1", "message": "hello from kubelab", "pod": "8ceac8d954cb"}
+healthz 200
+readyz 200
+--- user inside container
+uid=10001(app) gid=10001(app) groups=10001(app)
+docker stop took 0s

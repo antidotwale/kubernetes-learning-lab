@@ -1,0 +1,15 @@
+--- pod and the node the scheduler picked
+NAME          READY   STATUS    RESTARTS   AGE   IP           NODE         NOMINATED NODE   READINESS GATES
+kubelab-pod   1/1     Running   0          1s    10.244.2.2   lab-worker   <none>           <none>
+--- events
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  1s    default-scheduler  Successfully assigned lab/kubelab-pod to lab-worker
+  Normal  Pulled     0s    kubelet            spec.containers{kubelab}: Container image "kubelab:v1" already present on machine and can be accessed by the pod
+  Normal  Created    0s    kubelet            spec.containers{kubelab}: Container created
+  Normal  Started    0s    kubelet            spec.containers{kubelab}: Container started
+--- logs
+--- delete the pod, then look
+pod "kubelab-pod" deleted from lab namespace
+No resources found in lab namespace.

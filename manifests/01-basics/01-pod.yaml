@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubelab-pod
+  namespace: lab
+  labels:
+    app: kubelab
+spec:
+  containers:
+    - name: kubelab
+      image: kubelab:v1
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 8080

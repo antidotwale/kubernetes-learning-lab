@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubelab
+  namespace: lab
+  labels:
+    app: kubelab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubelab
+  template:
+    metadata:
+      labels:
+        app: kubelab
+    spec:
+      containers:
+        - name: kubelab
+          image: kubelab:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
