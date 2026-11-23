@@ -1,0 +1,47 @@
+--- break it: an image that does not exist
+deployment.apps/kubelab image updated
+deployment.apps/kubelab annotated
+Waiting for deployment "kubelab" rollout to finish: 1 out of 3 new replicas have been updated...
+error: timed out waiting for the condition
+rollout status exit code: 1
+--- pods
+NAME                       READY   STATUS             RESTARTS   AGE
+kubelab-68bf86dcc4-jdd98   0/1     ImagePullBackOff   0          40s
+kubelab-774889584f-clkwk   1/1     Running            0          20h
+kubelab-774889584f-lm794   1/1     Running            0          20h
+kubelab-774889584f-q4nxm   1/1     Running            0          20h
+--- why kubelab-68bf86dcc4-jdd98 is stuck
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  40s                default-scheduler  Successfully assigned lab/kubelab-68bf86dcc4-jdd98 to lab-worker2
+  Warning  Failed     31s                kubelet            spec.containers{kubelab}: Failed to pull image "kubelab:v3": failed to pull and unpack image "docker.io/library/kubelab:v3": failed to resolve reference "docker.io/library/kubelab:v3": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+  Warning  Failed     31s                kubelet            spec.containers{kubelab}: Error: ErrImagePull
+  Normal   BackOff    30s                kubelet            spec.containers{kubelab}: Back-off pulling image "kubelab:v3"
+  Warning  Failed     30s                kubelet            spec.containers{kubelab}: Error: ImagePullBackOff
+  Normal   Pulling    16s (x2 over 39s)  kubelet            spec.containers{kubelab}: Pulling image "kubelab:v3"
+--- is the service still answering?
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-q4nxm"}
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-clkwk"}
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-clkwk"}
+{"app": "kubelab", "version": "v2", "message": "hello from kubelab", "pod": "kubelab-774889584f-clkwk"}
+--- roll back
+Warning: resource deployments/kubelab was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+deployment.apps/kubelab rolled back
+deployment "kubelab" successfully rolled out
+--- pods after undo
+NAME                       READY   STATUS        RESTARTS   AGE
+kubelab-68bf86dcc4-jdd98   0/1     Terminating   0          41s
+kubelab-774889584f-clkwk   1/1     Running       0          20h
+kubelab-774889584f-lm794   1/1     Running       0          20h
+kubelab-774889584f-q4nxm   1/1     Running       0          20h
+--- history
+deployment.apps/kubelab 
+REVISION  CHANGE-CAUSE
+1         <none>
+5         bad image kubelab v3 on purpose
+6         update image to kubelab v2
+
+--- live image versus git
+kubelab:v2
+          image: kubelab:v2
