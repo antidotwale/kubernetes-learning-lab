@@ -1,0 +1,7 @@
+--- 1 second after start, delay 4
+GET / 503
+GET /healthz 200
+GET /readyz 503
+--- 5 seconds after start
+GET / 200
+GET /readyz 200

@@ -29,6 +29,8 @@ class Handler(BaseHTTPRequestHandler):
                 self._send(200, "ready", "text/plain")
             else:
                 self._send(503, "starting", "text/plain")
+        elif self.path == "/" and time.time() - STARTED < DELAY:
+            self._send(503, "warming up", "text/plain")
         elif self.path == "/":
             info = {"app": "kubelab", "version": VERSION, "message": MESSAGE, "pod": socket.gethostname()}
             self._send(200, json.dumps(info))
