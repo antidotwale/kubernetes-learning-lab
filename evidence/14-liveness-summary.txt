@@ -1,0 +1,35 @@
+===== stand in server: healthy for 20 seconds, then deadlocks (simulated hang, not the real app)
+pod/hang-noprobe created
+pod/hang-probe created
+--- 11:15:36 UTC
+hang-noprobe   Running   0
+hang-probe     Running   0
+--- 11:15:52 UTC
+hang-noprobe   Running   0
+hang-probe     Running   0
+--- 11:16:07 UTC
+hang-noprobe   Running   0
+hang-probe     Running   0
+--- 11:16:22 UTC
+hang-noprobe   Running   0
+hang-probe     Running   0
+--- 11:16:37 UTC
+hang-noprobe   Running   0
+hang-probe     Running   1
+--- 11:16:53 UTC
+hang-noprobe   Running   0
+hang-probe     Running   1
+--- 11:17:08 UTC
+hang-noprobe   Running   0
+hang-probe     Running   1
+===== does the pod without a probe still answer (last 2 lines of output)
+TimeoutError: timed out
+command terminated with exit code 1
+===== events for this hang-probe pod only (UTC)
+FIRST                  LAST                   COUNT   REASON      MESSAGE
+2026-11-28T11:15:21Z   2026-11-28T11:15:21Z   1       Scheduled   Successfully assigned lab/hang-probe to lab-worker
+2026-11-28T11:15:22Z   2026-11-28T11:16:28Z   2       Pulled      Container image "kubelab:v2.1" already present on machine and can be accessed by the pod
+2026-11-28T11:15:22Z   2026-11-28T11:16:28Z   2       Created     Container created
+2026-11-28T11:15:22Z   2026-11-28T11:16:28Z   2       Started     Container started
+2026-11-28T11:15:48Z   2026-11-28T11:17:03Z   6       Unhealthy   Liveness probe failed: Get "http://10.244.2.41:8080/healthz": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+2026-11-28T11:15:58Z   2026-11-28T11:17:03Z   2       Killing     Container app failed liveness probe, will be restarted
