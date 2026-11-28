@@ -1,0 +1,12 @@
+===== requests by status code
+ 355 200
+   3 ERR
+===== first and last non-200 line
+09:29:08 ERR
+09:29:27 ERR
+===== pods now
+NAME                       READY   STATUS    RESTARTS   AGE   IP            NODE          NOMINATED NODE   READINESS GATES
+kubelab-7dbff857c9-h8jxv   1/1     Running   0          37s   10.244.2.9    lab-worker    <none>           <none>
+kubelab-7dbff857c9-vs7xh   1/1     Running   0          27s   10.244.1.9    lab-worker2   <none>           <none>
+kubelab-7dbff857c9-wqnnl   1/1     Running   0          18s   10.244.2.10   lab-worker    <none>           <none>
+loadgen                    1/1     Running   0          43s   10.244.1.8    lab-worker2   <none>           <none>
