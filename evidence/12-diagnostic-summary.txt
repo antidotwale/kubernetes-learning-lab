@@ -1,0 +1,32 @@
+===== requests by status
+ 342 200
+   1 ERR:URLError:[Errno_111]_Connection_refused
+   3 ERR:URLError:timed_out
+===== every non-200 line: time, status, milliseconds
+10:29:10 ERR:URLError:timed_out 2004
+10:29:18 ERR:URLError:[Errno_111]_Connection_refused 0
+10:29:18 ERR:URLError:timed_out 2004
+10:29:27 ERR:URLError:timed_out 2002
+===== slowest 5 requests
+10:29:18 ERR:URLError:timed_out 2004
+10:29:10 ERR:URLError:timed_out 2004
+10:29:27 ERR:URLError:timed_out 2002
+10:28:55 200 58
+10:28:56 200 44
+===== pod events (UTC)
+2026-11-28T10:28:48Z   Started             kubelab-774889584f-fgqd9
+2026-11-28T10:28:48Z   Started             kubelab-774889584f-88sfk
+2026-11-28T10:28:48Z   Killing             kubelab-bd4cd854-224pw
+2026-11-28T10:28:48Z   Killing             kubelab-bd4cd854-84gh5
+2026-11-28T10:29:01Z   Started             kubelab-bd4cd854-2cpms
+2026-11-28T10:29:01Z   Unhealthy           kubelab-bd4cd854-2cpms
+2026-11-28T10:29:07Z   Unhealthy           kubelab-bd4cd854-2cpms
+2026-11-28T10:29:09Z   Killing             kubelab-774889584f-88sfk
+2026-11-28T10:29:10Z   Started             kubelab-bd4cd854-cnb47
+2026-11-28T10:29:10Z   Unhealthy           kubelab-bd4cd854-cnb47
+2026-11-28T10:29:16Z   Unhealthy           kubelab-bd4cd854-cnb47
+2026-11-28T10:29:18Z   Unhealthy           kubelab-bd4cd854-znzdr
+2026-11-28T10:29:18Z   Started             kubelab-bd4cd854-znzdr
+2026-11-28T10:29:18Z   Killing             kubelab-774889584f-sjbq6
+2026-11-28T10:29:25Z   Unhealthy           kubelab-bd4cd854-znzdr
+2026-11-28T10:29:27Z   Killing             kubelab-774889584f-fgqd9
