@@ -1,0 +1,20 @@
+===== arm: noprestop (manifests/02-probes/01-deployment-with-probes.yaml)
+noprestop trial 1: 200=322  503=0  ERR=3
+noprestop trial 2: 200=302  503=0  ERR=5
+noprestop trial 3: 200=324  503=0  ERR=3
+===== arm: prestop (manifests/02-probes/02-deployment-graceful.yaml)
+prestop trial 1: 200=405  503=0  ERR=0
+prestop trial 2: 200=426  503=0  ERR=0
+prestop trial 3: 200=407  503=0  ERR=0
+===== every error line, all trials
+noprestop-1.txt:10:41:32 ERR:URLError:timed_out 2003
+noprestop-1.txt:10:41:50 ERR:URLError:[Errno_111]_Connection_refused 0
+noprestop-1.txt:10:41:51 ERR:URLError:timed_out 2000
+noprestop-2.txt:10:42:43 ERR:URLError:[Errno_111]_Connection_refused 0
+noprestop-2.txt:10:42:43 ERR:URLError:timed_out 2065
+noprestop-2.txt:10:42:52 ERR:URLError:timed_out 2004
+noprestop-2.txt:10:43:01 ERR:URLError:[Errno_111]_Connection_refused 1
+noprestop-2.txt:10:43:01 ERR:URLError:timed_out 2002
+noprestop-3.txt:10:43:53 ERR:URLError:[Errno_111]_Connection_refused 1
+noprestop-3.txt:10:44:02 ERR:URLError:timed_out 2004
+noprestop-3.txt:10:44:12 ERR:URLError:timed_out 2003
