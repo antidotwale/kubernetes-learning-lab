@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubelab
+  namespace: lab
+  labels:
+    app: kubelab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubelab
+  template:
+    metadata:
+      labels:
+        app: kubelab
+    spec:
+      containers:
+        - name: kubelab
+          image: kubelab:v2.1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: STARTUP_DELAY
+              value: "8"
+          ports:
+            - containerPort: 8080
