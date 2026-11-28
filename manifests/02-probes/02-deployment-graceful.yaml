@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubelab
+  namespace: lab
+  labels:
+    app: kubelab
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubelab
+  template:
+    metadata:
+      labels:
+        app: kubelab
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: kubelab
+          image: kubelab:v2.1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: STARTUP_DELAY
+              value: "8"
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+            periodSeconds: 2
+            failureThreshold: 2
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              sleep:
+                seconds: 5
